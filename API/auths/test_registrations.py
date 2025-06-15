@@ -2,7 +2,7 @@ import pytest
 import allure
 from BASE.something import post_something
 from auths_routes import auths_routes
-from BASE.conftest import TestUser
+from AuthClass import *
 
 negative_cases = [
     ("email", "invalid", 400),

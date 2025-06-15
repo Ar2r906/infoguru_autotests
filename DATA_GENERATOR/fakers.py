@@ -1,3 +1,4 @@
+import string
 from faker import Faker
 import random
 import uuid
@@ -38,3 +39,9 @@ def generate_user_class():
 # генерация пароля
 def generate_password(min_length=8):
     return faker.password(length=min_length, special_chars=True, digits=True, upper_case=True, lower_case=True)
+
+def generate_string(min_length, max_length):
+    return ''.join(random.sample(string.ascii_letters + string.digits, random.randint(min_length, max_length)))
+
+def generate_number():
+    return random.randint(1, 100)

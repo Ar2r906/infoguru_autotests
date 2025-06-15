@@ -2,7 +2,7 @@ import pytest
 import allure
 from BASE.something import post_something
 from auths_routes import auths_routes
-from fixtures import registered_user
+from conftest import registered_user
 
 negative_cases = [
     ("email", "invalid", 400),
