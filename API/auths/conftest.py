@@ -1,8 +1,8 @@
 import pytest
 import os
-from AuthClass import TestUser
+from API.auths.AuthClass import BaseUser
 from BASE.something import *
-from auths_routes import auths_routes
+from API.auths.auths_routes import auths_routes
 from dotenv import load_dotenv
 
 load_dotenv('../../.env')
@@ -12,7 +12,7 @@ PASS_ADMIN = os.getenv('MAIN_PASS')
 # регистрация пользователя, по сути это и есть позитивный тест-кейс
 @pytest.fixture(scope="session")
 def registered_user():
-    user = TestUser()
+    user = BaseUser()
     response = post_something(auths_routes['signup']['url'], json=user.as_dict())
     assert response.status_code == 201
     return user
@@ -24,13 +24,11 @@ def access_token(registered_user):
         'email': registered_user.email,
         'password': registered_user.password,
     }
-
     response = post_something(auths_routes["signin"]["url"], json=creds)
     assert response.status_code == 200
     token = response.json().get("AccessToken")
     assert token
     return token
-
 
 # авторизация админа // получение токена админа
 @pytest.fixture(scope="session")

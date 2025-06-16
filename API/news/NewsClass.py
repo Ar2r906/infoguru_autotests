@@ -1,9 +1,8 @@
 import pytest
 from DATA_GENERATOR import fakers
 
-class TestNews:
+class BaseNews:
     def __init__(self):
-        self.id = None
         self.title =fakers.generate_string(5, 9)
         self.content = fakers.generate_string(20, 40)
         self.image = 'src/images/image.png'
@@ -11,7 +10,6 @@ class TestNews:
 
     def as_dict(self):
         return {
-            'id': self.id,
             'title': self.title,
             'content': self.content,
             'image': self.image,
@@ -25,4 +23,4 @@ class TestNews:
 
 @pytest.fixture
 def news_data_dict():
-    return TestNews().as_dict()
+    return BaseNews().as_dict()

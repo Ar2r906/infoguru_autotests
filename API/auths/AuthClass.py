@@ -1,7 +1,7 @@
 import pytest
 from DATA_GENERATOR import fakers
 
-class TestUser:
+class BaseUser:
     def __init__(self):
         self.email = fakers.generate_email()
         self.f_name = fakers.generate_f_name()
@@ -31,4 +31,4 @@ class TestUser:
 
 @pytest.fixture
 def user_data_dict():
-    return TestUser().as_dict()
+    return BaseUser().as_dict()

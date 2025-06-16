@@ -47,7 +47,7 @@ class TestRegistrations:
     @pytest.mark.parametrize("field, value, expected_status", negative_cases)
     def test_negative_registration(self, field, value, expected_status):
         # Создаем всегда новые данные (для чистоты теста)
-        user = TestUser()
+        user = BaseUser()
         data = user.copy_modified(field, value)
 
         response = post_something(auths_routes["signup"]["url"], json=data)
