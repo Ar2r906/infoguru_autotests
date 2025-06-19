@@ -18,19 +18,19 @@ articles_routes = {
         'error_status': [404, 500],
     },
     'get_articles_by_id': {
-        'url': f"{BASE_URL}/articles/get_articles/{id}",
+        'url': f"{BASE_URL}/articles/get_articles/:id",
         'method': 'GET',
         'expected_status': 200,
         'error_status': [400, 404, 500],
     },
     'edit_articles': {
-        'url': f"{BASE_URL}/articles/edit_articles/{id}",
+        'url': f"{BASE_URL}/articles/edit_articles/:id",
         'method': 'PATCH',
         'expected_status': 200,
         'error_status': [400, 404, 500],
     },
     'delete_articles': {
-        'url': f"{BASE_URL}/articles/delete_articles/{id}",
+        'url': f"{BASE_URL}/articles/delete_articles/:id",
         'method': 'DELETE',
         'expected_status': 204,
         'error_status': [400, 404, 500],

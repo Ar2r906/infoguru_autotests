@@ -2,8 +2,8 @@ import requests
 from dotenv import load_dotenv
 load_dotenv('../.env')
 
-def get_something(endpoint, headers_data=None, params=None):
-    response = requests.get(f'{endpoint}', headers=headers_data, params=params)
+def get_something(endpoint, headers=None, params=None):
+    response = requests.get(f'{endpoint}', headers=headers, params=params)
     return response
 
 def post_something(endpoint, headers=None, params=None, json=None):
