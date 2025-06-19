@@ -11,13 +11,13 @@ users_routes = {
         'error': [400, 404, 500]
     },
     'get_info_about_user_by_uid': {
-        'url': f"{BASE_URL}/users/get_info_about_user/{id}",
+        'url': f"{BASE_URL}/users/get_info_about_user/:uid",
         'method': 'GET',
         'expected_status': 200,
         'error': [400, 404, 500]
     },
     'edit_users': {
-        'url': f"{BASE_URL}/users/edit_users/{id}",
+        'url': f"{BASE_URL}/users/edit_users/:uid",
         'method': 'PATCH',
         'expected_status': 201,
         'error': [400, 404, 500]
