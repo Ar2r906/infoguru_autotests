@@ -3,6 +3,7 @@ import os
 from API.auths.AuthClass import BaseUser
 from BASE.something import *
 from API.auths.auths_routes import auths_routes
+from API.users.users_routes import users_routes
 from dotenv import load_dotenv
 
 load_dotenv('../../.env')
@@ -42,3 +43,41 @@ def get_access_token_admin():
     token = response.json().get('AccessToken')
     assert token
     return token
+
+@pytest.fixture(scope="session")
+def created_auth_user(get_access_token_admin):
+    user = BaseUser()
+    json_data = user.as_dict()
+
+    response_register = post_something(
+        auths_routes['signup']['url'],
+        json=json_data
+    )
+    assert response_register.status_code == 201
+
+    signin_response = post_something(
+        auths_routes['signin']['url'],
+        json={"email": user.email, "password": user.password}
+    )
+    assert signin_response.status_code == 200
+
+    token = signin_response.json()['AccessToken']
+    uid = signin_response.json()['uid']
+
+    yield {
+        'email': user.email,
+        'uid': uid,
+        'token': token,
+        'password': user.password,
+        'f_name': user.f_name,
+        's_name': user.s_name,
+        'p_name': user.p_name,
+        'age': user.age,
+    }
+
+    delete_response = delete_something(
+        users_routes['delete_user']['url'],
+        headers={"x-access-token": f"{get_access_token_admin}"},
+        json=user.email
+    )
+    assert delete_response.status_code in [200, 204]

@@ -3,7 +3,7 @@ import pytest
 from BASE.something import *
 from users_routes import users_routes
 from DATA_GENERATOR import fakers
-from API.auths.conftest import get_access_token_admin
+from API.auths.conftest import get_access_token_admin, created_auth_user
 
 class TestUsers:
 
@@ -41,3 +41,14 @@ class TestUsers:
         assert response.status_code == expected_status
         assert response.json()
 
+    #f_name, s_name, p_name, email, age, school, user_class
+    @allure.title('Negative edit users tests')
+    @pytest.mark.parametrize("field, value, expected_status", [
+        (0, 0, 0)
+    ])
+    def test_negative_edit_users(self, field, value, expected_status, created_auth_user):
+        headers_data = {"x-access-token": f""}
+        json_data = {
+            "uid": str(created_auth_user["uid"]),
+
+        }
