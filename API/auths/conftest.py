@@ -78,6 +78,6 @@ def created_auth_user(get_access_token_admin):
     delete_response = delete_something(
         users_routes['delete_user']['url'],
         headers={"x-access-token": f"{get_access_token_admin}"},
-        json=user.email
+        json={"email": user.email}
     )
     assert delete_response.status_code in [200, 204]
