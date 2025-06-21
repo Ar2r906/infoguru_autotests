@@ -81,3 +81,15 @@ def created_auth_user(get_access_token_admin):
         json={"email": user.email}
     )
     assert delete_response.status_code in [200, 204]
+
+@pytest.fixture(scope="session")
+def get_admin_uid():
+    creds = {
+        'email': f'{EMAIL_ADMIN}',
+        'password': f'{PASS_ADMIN}',
+    }
+    response = post_something(auths_routes['signin']['url'], json=creds)
+    assert response.status_code == 200
+    uid = response.json().get('uid')
+    assert uid
+    return uid
