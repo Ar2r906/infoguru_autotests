@@ -24,6 +24,7 @@ exit_code = pytest.main([
     "API/feedback",
     "API/tests",
     "API/users",
+    "API/questions",
     "-v", # режим verbose (подробный вывод: test_login.py::TestAuth::test_success PASSED)
     # "--disable-warnings",
     #f"--alluredir={ALLURE_RESULTS_DIR}"
