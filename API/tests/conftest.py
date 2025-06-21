@@ -1,7 +1,7 @@
 import pytest
-from tests_routes import tests_routes
+from API.tests.tests_routes import tests_routes
 from BASE.something import *
-from TestClass import BaseTests
+from API.tests.TestClass import BaseTests
 
 @pytest.fixture(scope='session')
 def create_delete_tests(get_access_token_admin, get_admin_uid):
