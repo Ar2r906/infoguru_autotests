@@ -1,7 +1,7 @@
 import pytest
 import allure
 from BASE.something import *
-from API.tests import TestClass
+from API.tests.TestClass import BaseTests
 from tests_routes import tests_routes
 from conftest import *
 from API.auths.conftest import get_access_token_admin, get_admin_uid

@@ -19,7 +19,12 @@ ALLURE_REPORT_DIR = os.path.join(CURRENT_DIR, "allure-report")
 # Запуск тестов
 exit_code = pytest.main([
     "API/auths",
-    # "-v", # режим verbose (подробный вывод: test_login.py::TestAuth::test_success PASSED)
+    "API/news",
+    "API/articles",
+    "API/feedback",
+    "API/tests",
+    "API/users",
+    "-v", # режим verbose (подробный вывод: test_login.py::TestAuth::test_success PASSED)
     # "--disable-warnings",
     #f"--alluredir={ALLURE_RESULTS_DIR}"
 ])
